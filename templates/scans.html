@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="wrapper">
+    <div class="section scans-section">
+        <div class="section-title-div">
+            <p class="section-title green">Escaneos</p>
+            <div class="help-icon">
+                <a class="info-icon" onclick="event.preventDefault();return informationBox(this,'{{infoMessage.scans_list}}');" href="">&#x1F6C8;</a>
+            </div>
+            <div class='right'>
+                <a href="/exportar-csv-services" download="datos_services.csv">
+                    <img class="csv-icon-download" src="{% static 'img/download_csv.svg' %}" alt="Descargar CSV">
+                </a>
+            </div>
+        </div>
+        <div class="section-content">
+            {% if scans|length == 0 %}
+            <div class="no-item horizontal-center">
+                    <div class="wrapper fit-content horizontal-center">
+                        <div class="no-item-message">
+                        <br> 
+                        No hay ningun ningun servicio escaneado
+                        <br>
+                        añade uno en el botón de abajo
+                        </div>
+                    </div>
+                    <div class="add-span center-nothing">
+                        {% if booleanAdmin %}
+                            <a href="/scans/create">+ Añadir nuevo escaneo</a>
+                        {% endif %}
+                    </div>
+
+            </div>
+
+            {% else %}
+            
+            <table class="zebra-table scans-list">
+                <tr>
+                    <th style="width: 15%;">Identificador</th>
+                    <th>Datos</th>
+                    <th style="width: 20%;">Notas</th>
+                </tr>
+                {% for s in scans %}
+                <tr>
+                    <td><a href="/scans/{{ s.pk }}">{{ s.identifier }}</td>
+                    <td class='large'>{{ s.conditions }}</td>
+                    <td>{{ s.notes }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            <div class="add-span">
+                {% if booleanAdmin %}
+                    <br>
+                    <a href="/scans/create">+ Añadir nuevo escaneo</a>
+                {% endif %}
+            </div>
+            <div class="pagination-container">
+                <div class="pagination">
+                    {% if hasPrevious %}
+                    <a href="/scans?page={{page|add:-1}}"><</a>
+                    {% else %}
+                    <a class="disabled" href="/scans?page={{page|add:-1}}"><</a>
+                    {% endif %}
+                    <div class="pagination-number">{{ page }}</div>
+                    {% if hasNext %}
+                    <a href="/scans?page={{page|add:1}}">></a>
+                    {% else %}
+                    <a class="disabled" href="/scans?page={{page|add:1}}">></a>
+                    {% endif %}
+
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

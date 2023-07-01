@@ -1,0 +1,6 @@
+<ul class="config-menu">
+    <li><a {% if active_tab == 'pass-change' %} class="active" {% else %} class="inactive" {% endif %} href="/configuration/pass-change">Cambiar contraseña</a></li>
+    {% if adminUser %}<li><a {% if active_tab == 'admin' %} class="active" {% else %} class="inactive" {% endif %} href="/admin">Administración</a></li>{% endif %}
+    <li><a {% if active_tab == 'about' %} class="active" {% else %} class="inactive" {% endif %} href="/configuration/about">Acerca de</a></li>
+    <li><a {% if active_tab == 'logout' %} class="active" {% else %} class="inactive" {% endif %} href="/logout">Cerrar sesión</a></li>
+</ul>

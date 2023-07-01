@@ -1,0 +1,12 @@
+{% load static %}
+<div>
+    <div class='title-service'>
+        {{s.port}}/{{s.transport}}{% if s.status == '200'%}<a href="http://{{general_information.ip}}:{{s.port}}" onclick="window.location.href='http://{{general_information.ip}}:{{s.port}}'"><img class="link-icon" src="{% static 'img/link.svg' %}"/></a>{% endif %}
+    </div>
+    <div class='service-section'>
+        {% if s.product != '' %}<p class='product-name'>{{s.product}}<p>{% endif %}
+        <pre class='pre-formatted-data'>{{s.data}}</pre>
+        {{s.ssh}}
+    </div>
+</div>
+<br>

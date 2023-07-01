@@ -1,0 +1,7 @@
+shodan
+Django
+python-dotenv
+pytz
+nvdlib
+goslate
+json

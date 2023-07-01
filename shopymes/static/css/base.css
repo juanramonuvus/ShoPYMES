@@ -1,0 +1,231 @@
+html {
+    overflow-x: hidden;
+    margin-right: calc(-1 * (100vw - 100%));
+  }
+
+
+.header-top{
+    position: relative;
+    width: 100%;
+    height: 65px;
+    background-color:rgba(124, 144, 112, 1);
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+}
+.header-nav{
+    width: 100%;
+    background-color:rgba(124, 144, 112, 1);
+}
+
+
+.header-title{
+    float:left;
+    color:white;
+    font-size: 20px;
+    letter-spacing: 7px;
+    padding: 20px 0px 0px 18px;
+}
+
+.header-user{
+    float:right;
+
+    padding: 20px 18px 0px 0px;
+
+
+}
+
+.header-user-element{
+    position:relative;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+}
+
+.header-user-text{
+    padding:6px;
+    font-size:14px;
+}
+
+.menu{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.menu li{
+    float: left;
+    display: table;
+    vertical-align: middle;
+}
+
+
+  
+.menu li a {
+    display: block;
+    text-align: center;
+    padding: 10px 46px;
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+    
+  }
+
+.menu li a:hover {
+    background-color: rgb(156, 167, 119);
+  }
+
+
+::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: white;
+}
+
+::-webkit-scrollbar
+{
+	width: 5px;
+	background-color: white;
+}
+
+::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+    background-color: #505050;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	
+}
+
+.notification{
+    position: fixed;
+    z-index: 2;
+    right: 10px;
+    bottom: 10px;
+    width: 600px;
+    background-color: white;
+    padding: 4px;
+    border-radius: 10px;
+    animation: fadeInNotification 0.9s ease-in-out;
+    
+}
+
+
+@keyframes fadeInNotification {
+    0% { opacity: 0; bottom:-100px;}
+    25% { opacity: 0;}
+    100% { opacity: 1; bottom:10px;}
+  }
+
+
+
+.correct{
+    border-color: #3CBE40;
+    border-style: solid;
+    border-width: medium;
+
+}
+
+.info{
+    border-color:#EFB74B;
+    border-style: solid;
+    border-width: medium;
+
+}
+
+.error{
+    border-color: rgba(239, 75, 76, 1);
+    border-style: solid;
+    border-width: medium;
+
+}
+
+.close{
+    float: right;
+}
+
+.xbutton{
+    border: none;
+    text-decoration: none;
+    background-color: white;
+    font-size: 22px;
+}
+
+.notification-logo{
+    width: 80px;
+}
+
+.notification-info{
+    padding: 10px;
+}
+
+.notification-title{
+    font-size: 18px;
+    font-weight: bold;
+    margin:2px 0px 0px 10px;
+}
+
+.greentext{
+    color: #3CBE40;
+}
+
+.orangetext{
+    color: #EFB74B;
+}
+
+.redtext{
+    color:rgba(239, 75, 76, 1);
+}
+
+/* popup */
+
+.popup-overlay{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.85);
+    z-index: 10;
+    display: none;
+    animation: fadeIn 0.3s;
+    
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0;}
+    25% { opacity: 0;}
+    100% { opacity: 1;}
+  }
+
+
+.popup{
+    width: 400px;
+    min-height: 200px;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    padding: 15px;
+    animation: fadeInValidate 0.5s;
+    box-shadow: 0 0 40px rgb(0 0 0 / 30%);
+
+}
+
+@keyframes fadeInValidate {
+    0% { opacity: 0; top:40%;}
+    25% { opacity: 0;}
+    100% { opacity: 1; top:50%;}
+  }
+
+.popup-buttons{
+    text-align: right;
+}
+
+.popup-message{
+    min-height: 110px;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-bottom: 12px;
+}
+
+

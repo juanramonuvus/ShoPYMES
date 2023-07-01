@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load custom_tags_template %}
+{% block content %}
+
+<div class="wrapper">
+    <div class="section scans-section">
+        <div class="section-title-div">
+            <p class="section-title green">Monitorización</p>
+            <div class="help-icon">
+                <a class="info-icon" onclick="event.preventDefault();return informationBox(this,'{{infoMessage.monitorization}}');" href="">&#x1F6C8;</a>
+            </div>
+        </div>
+        <div class='service-section-form'>
+            <form class='create-form' action='/monitorization/' method="post">
+                {% csrf_token %}
+                {% readonly_form form request %}
+                <div class='service-section'>
+                    {{ form.monitorization_check }}
+                    {{ form.ips.label }}
+                    <a class="info-icon-form" onclick="event.preventDefault();return informationBox(this,'{{infoMessage.monitorizationForm}}');" href="">&#x1F6C8;</a>
+                    {{ form.ips }}
+                </div>
+                <div class="section-button right">
+                    {% if booleanAdmin %}
+                        <input class="form-button greenbg white" type="submit" value="Modificar">
+                    {% endif %}
+                </form>
+                </div>      
+        </div>
+        <div class="section-content">
+            {% if alerts|length == 0 %}
+            <div class="no-item horizontal-center">
+                    <div class="wrapper fit-content horizontal-center">
+                        <div class="no-item-message">
+                        <br> 
+                        No hay ningun ninguna alerta registrada
+                        <br>
+                        </div>
+                    </div>
+            </div>
+
+            {% else %}
+            
+            <table class="zebra-table scans-list">
+                <tr>
+                    <th style="width: 15%;">Descripción</th>
+                </tr>
+                {% for a in alerts %}
+                <tr>
+                    <td>{{ a.description }}</td>
+                {% endfor %}
+            </table>
+           <br>
+            <div class="pagination-container">
+                <div class="pagination">
+                    {% if hasPrevious %}
+                    <a href="/scans?page={{page|add:-1}}"><</a>
+                    {% else %}
+                    <a class="disabled" href="/scans?page={{page|add:-1}}"><</a>
+                    {% endif %}
+                    <div class="pagination-number">{{ page }}</div>
+                    {% if hasNext %}
+                    <a href="/scans?page={{page|add:1}}">></a>
+                    {% else %}
+                    <a class="disabled" href="/scans?page={{page|add:1}}">></a>
+                    {% endif %}
+
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

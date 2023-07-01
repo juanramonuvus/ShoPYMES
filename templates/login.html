@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ShoPYMES</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'img/favicon.ico' %}">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <!--
+    <script src="{% static 'js/status.js' %}"></script>
+    <script src="{% static 'js/jquery-3.6.1.min.js' %}"></script>
+    -->
+
+</head>
+
+<div class="login-container">
+
+    <div class="left-login">
+
+        <div class="title-div">
+            <div>
+                <span class="title">ShoPYMES</span>
+            </div>
+            <div class="subtitle_div">
+                <span class="subtitle">Herramienta de escaneo y analisis de sistemas<br>conectados a internet</span>
+            </div>
+        </div>
+
+    <img class="logo-login" src="{% static 'img/logo_shopymes.png' %}">
+
+    </div>
+
+    <div class="right-login">
+
+        <div class="login-div">
+            
+            <div class="login-welcome">
+                <span class="section-title white">Bienvenido</span>
+            </div>
+
+            <form class="login-form" action="/login" method="post">
+                {% csrf_token %}
+                <div>
+                    {{ form.username }}
+                </div>
+                <div>
+                    {{ form.password }}
+                </div>
+                <div>
+                    <input class="button green whitebg" type="submit" value="Iniciar sesión">
+                </div>
+                
+            </form>
+        </div>
+
+    </div>
+
+    {% if notification %}
+        <div class={% if notification.type == 'correct' %} "notification correct" {% else %} "notification error" {% endif %}>
+            <div class="close">
+                <button class="xbutton" onclick="this.parentElement.parentElement.style.display='none';">&times;</button>
+            </div>
+            <div>
+            <div class="wrapper notification-info">
+                <div class="left-not">
+                    {% if notification.type == 'correct' %} 
+                    <img class="notification-logo" src="{% static 'img/correct-not.svg' %}">
+                    {% else %}
+                    <img class="notification-logo" src="{% static 'img/excl-not.svg' %}">
+                    {% endif %}
+                    
+                </div>
+                <div class="right-not">
+                    {% if notification.type == 'correct' %} 
+                    <div class="notification-title greentext">Correcto</div>
+                    {% else %}
+                    <div class="notification-title redtext">Error</div>
+                    {% endif %}
+                    
+                    <div class="notification-info">{{notification.message|safe}}</div>
+                </div>
+            </div>
+            </div>
+        </div>
+    {% endif %}
+
+</div>
+
+</html>

@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="wrapper">
+<div class="section events-section">
+    <div class="section-title-div">
+
+    <p class="section-title green">Últimos eventos</p>
+    <div class="help-icon">
+        <a class="info-icon" onclick="event.preventDefault();return informationBox(this,'{{infoMessage.logs}}');" href="">&#x1F6C8;</a>
+    </div>
+    </div>
+
+    <div class="section-content">
+
+    <table class="zebra-table events">
+        <tr>
+            <th>Fecha y hora</th>
+            <th>Evento</th>
+        </tr>
+        
+        {% for l in status.logs %}
+        <tr class="tr-log">
+            <td class="td-log">{{ l.date}}</td>
+            <td class="td-log">{{ l.description|safe }}</td>
+        </tr>
+        {% endfor %}
+
+
+    </table>
+</div>
+</div>
+
+<div class="section processed-section">
+    
+
+    <p class="section-title green">Elementos procesados</p>
+    <div class="section-content">
+    
+        <div class="processed">
+            <div class="center">
+                <div class="processed-block">
+                    <div class="processed-inside right">
+                        <span id="alertsnum" class="bignumber">{{n_vulns}}</span>
+                    </div>
+                    <div class="processed-inside left">
+                        <span class="bignumbertext">Vulnerabilidades</span>
+                    </div>
+                </div>
+                
+                <div class="processed-block">
+                    <div class="processed-inside right">
+                        <span id="assetsnum" class="bignumber">{{n_hosts}}</span> 
+                    </div>
+                    <div class="processed-inside left">
+                        <span class="bignumbertext">Activos</span>
+                    </div>
+                </div>
+                <br>
+                <div class="processed-block">
+                    <div class="processed-inside left">
+                        <span class="bigboldtext">Monitorización:</span>
+                    </div>
+                    <div class="processed-inside right">
+                        {% if monitorization %}
+                            <span id="incidentsnum" class="bignumbertext">Activado</span>
+                        {% else %}
+                            <span id="incidentsnum" class="bignumbertext">Desactivado</span>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+</div>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="wrapper">
+    <div class="section scans-section">
+        <div class="section-title-div">
+            <p class="section-title green">Vulnerabilidades encontradas</p>
+            <div class="help-icon">
+                <a class="info-icon" onclick="event.preventDefault();return informationBox(this,'{{infoMessage.vulnerabilities}}');" href="">&#x1F6C8;</a>
+            </div>
+        </div>
+        <div class="section-content">
+            {% if vulnerabilities|length == 0 %}
+            <div class="no-item horizontal-center">
+                    <div class="wrapper fit-content horizontal-center">
+                        <div class="no-item-message">
+                        <br> 
+                        No hay ninguna vulnerabilidad escaneada
+                        <br>
+                        se añadiran conforme realices escaneos.
+                        </div>
+                    </div>
+            </div>
+            {% else %}
+            
+            <table class="zebra-table scans-list">
+                <tr>
+                    <th style="width: 15%;">Identificador</th>
+                    <th>Descripción</th>
+                    {% if booleanAdmin %}<th style="width: 3%;"></th>{% endif %}
+                </tr>
+                {% for v in vulnerabilities %}
+                <tr>
+                    <td><a href="https://nvd.nist.gov/vuln/detail/{{v.identifier}}">{{v.identifier}}</td>
+                    <td>{{ v.description }}</td>
+                    {% if booleanAdmin %}<td><a href="/vulnerabilities/{{ v.identifier }}" onclick="event.preventDefault();return validateLink(this,'Está apunto de eliminar una vulnerabilidad. ¿Estas seguro de eliminarlo?');"><img  class='trash-icon' src="{% static 'img/trash-can.svg' %}" alt="Eliminar"/></a></td>{% endif %}
+                </tr>
+                {% endfor %}
+            </table>
+            <br>
+            <div class="pagination-container">
+                <div class="pagination">
+                    {% if hasPrevious %}
+                    <a href="/scans?page={{page|add:-1}}"><</a>
+                    {% else %}
+                    <a class="disabled" href="/scans?page={{page|add:-1}}"><</a>
+                    {% endif %}
+                    <div class="pagination-number">{{ page }}</div>
+                    {% if hasNext %}
+                    <a href="/scans?page={{page|add:1}}">></a>
+                    {% else %}
+                    <a class="disabled" href="/scans?page={{page|add:1}}">></a>
+                    {% endif %}
+
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

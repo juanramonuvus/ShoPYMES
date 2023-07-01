@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+
+
+    <head>
+        <title>ShoPYMES</title>
+        <link rel="icon" type="image/x-icon" href="{% static 'img/favicon.ico' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+        <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+
+       <!--<script type="text/javascript">
+            
+            if (localStorage.getItem('mode') == 'dark'){
+
+                var file = location.pathname.split( "/" ).pop();
+                
+                var link = document.createElement( "link" );
+                link.href = file.substr( 0, file.lastIndexOf( "." ) ) + "/static/css/dark.css";
+                link.type = "text/css";
+                link.rel = "stylesheet";
+                link.media = "screen,print";
+                
+                document.getElementsByTagName( "head" )[0].appendChild( link );
+            }
+        </script>
+        -->
+        <script src="{% static 'js/status.js' %}"></script>
+        <script src="{% static 'js/jquery-3.6.1.min.js' %}"></script>
+
+
+    </head>
+    
+    <body>
+        
+
+
+        <div id="notification_div" class={% if notification.type == 'correct' %} "notification correct" {% elif notification.type == 'info' %} "notification info" {% else %} "notification error" {% endif %} style={% if notification %} {% else %}"display:none;"{% endif %}>
+            <div class="close">
+                <button class="xbutton" onclick="this.parentElement.parentElement.style.display='none';">&times;</button>
+            </div>
+            <div>
+            <div class="wrapper notification-info">
+                <div class="left-not">
+                    {% if notification.type == 'correct' %} 
+                    <img class="notification-logo" src="{% static 'img/correct-not.svg' %}">
+                    
+                    {% elif notification.type == 'info' %}
+                    <img class="notification-logo" src="{% static 'img/info-not.svg' %}">
+                    
+                    {% else %}
+                    <img class="notification-logo" src="{% static 'img/excl-not.svg' %}">
+                    {% endif %}
+                    
+                </div>
+                <div class="right-not">
+                    {% if notification.type == 'error' %} 
+                    <div class="notification-title redtext">Error</div>
+                    {% elif notification.type == 'correct' %}
+                    <div class="notification-title greentext">Correcto</div>
+                    {% endif %}
+                    
+                    <div id="notification-info" class="notification-info">{{notification.message|safe}}</div>
+                    
+                    
+                </div>
+            </div>
+            </div>
+        </div>
+
+         <div id="popup-overlay" class="popup-overlay">
+            <div class="popup" id="popup" role="confirm">
+                <div id ="popup-message" class="popup-message">
+                    <p class="section-title blue" id="confirmation-title">Atención</p>
+                    <span class="confirmation-message" id="confirmation-message"></span>
+                </div>
+                <div class="popup-buttons" id="popup-buttons">
+                    
+                </div>
+                
+            </div>
+        </div>
+
+        <header>
+            
+            <div class="header-top">
+                <div class="header-title">
+                    <span class="header-title-text">SHOPYMES</span>
+                </div>
+
+                <div class="header-user white">
+                    <span class="header-user-element header-user-text">{{ username }}</span>
+                    <img class="user-logo header-user-element" src="{% static 'img/user_logo.svg' %}">
+                </div>
+
+            </div>
+            <div class="header-nav">
+                <ul class="menu">
+                    <li><a href="/">Inicio</a></li>
+                    <li><a href="/scans">Escaneo</a></li>
+                    <li><a href="/vulnerabilities">Vulnerabilidades</a></li>
+                    <li><a href="/monitorization">Monitorización</a></li>
+                    <li><a href="/configuration">Configuración</a></li>
+                </ul>
+            </div>
+        </header>
+
+        
+        
+        <div class="web-container">
+        
+            {% block content %}
+            {% endblock %}
+
+        </div>
+
+
+        <footer>
+            <img class="logo-footer" src="{% static 'img/logo_footer.svg' %}"/>
+            <div class="footer-text">ShoPYMES es una herramienta creada con Shodan.io esta libre de cualquier derecho</div>
+        </footer>
+
+
+
+    </body>
+
+
+
+</html>

@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="wrapper">
+    <div class="section scans-section">
+        <div class="title-scans">
+            <div class="left">
+                <div class="section-title-div">
+                    <p class="section-title green">Selección de servicios</p>
+                    <div class="help-icon">
+                        <a class="info-icon" onclick="event.preventDefault();return informationBox(this,'{{infoMessage.scans_search}}');" href="">&#x1F6C8;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-container-search">
+            <form name="searchForm" action="/scans/create" method="post">
+                {% csrf_token %}
+                <div>
+                    {{searchForm.search}} <input type="image" class="search-icon " src="{% static 'img/magnifying-glass.svg' %}" alt="Buscar" name="searchForm"/>
+                    {{searchForm.identifier}}
+                </div>
+            </form>
+        </div>
+        <div class="section-content">
+                {%if search_scans|length < 1%}
+                    <div class="wrapper fit-content horizontal-center ">
+                        <div class="no-item-message">
+                        <br> 
+                        Empieza a escanear activos 
+                        <br>
+                        a traves del buscador de arriba
+                        </div>
+                    </div>
+                {%else%}
+                    <div class="wrapper fit-content horizontal-center ">
+                        <div class="section-content">
+                            <form name="submitForm" action="/scans/create" method="post">
+                                {% csrf_token %}
+                                <div class="right blue"><span id="n-assets">0</span> activos seleccionados</div>
+                                <br>
+                                <div class="table-height">
+                                    <div class="conditions">Seleccione los activos a analizar:</div>
+                                    <table class="zebra-table scans-list">
+
+                                        <tr>
+                                            <th style="width: 10px;"></th>
+                                            <th style="width: 15%;">IP</th>
+                                            <th style="width: 15%;">Organización</th>
+                                            <th style="width: 15%;">Localización</th>
+                                            <th>Datos</th>
+                                        </tr>
+                                        {% for a in search_scans %}
+                                        <tr>
+                                            <td><input style="width: 10px;" type="checkbox" onclick="assetCheck(this);" name="asset{{ forloop.counter0}}" value="{{ a.id }}"></td>
+                                            <td>{{ a.ip_str }}</td>
+                                            <td>{{ a.org }}</td>
+                                            <td>{{ a.city }} - {{a.country_name}}</td>
+                                            <td class="large">{{ a.data }}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </table>
+                                    <input type="hidden" value="submit" name="identifier">
+                                    <input type="hidden" name="search_scans" value="{{ search_scans }}">
+                                </div>
+                                <p style="font-style: italic;">"El proceso de escaneo puede tardar unos minutos"</p>
+                                <br>
+                                <div class="section-button">
+                                    <input class="form-button greenbg white right" type="submit" value="Escanear" name="submitForm">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                {%endif%}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

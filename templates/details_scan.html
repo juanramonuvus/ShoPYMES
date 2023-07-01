@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load custom_tags_template %}
+{% block content %}
+<div class="wrapper">
+    <div class='hundredpercent'>
+        <div class="section scans-section">
+            {% if booleanAdmin %}
+            <div class="delete-button right">
+                <a class="delete form-button redbg white" href="/scans/delete/{{ pk }}" onclick="event.preventDefault();return validateLink(this,'Está apunto de eliminar un host. ¿Estas seguro de eliminar el activo?');">Eliminar servicio</a>
+            </div>
+            {% endif %}
+            <div class="section-title-div">
+                <p class="section-title green">Detalles del servicio</p>
+                <div class="help-icon">
+                    <a class="info-icon" onclick="event.preventDefault();return informationBox(this,'{{infoMessage.details_scan}}');" href="">&#x1F6C8;</a>
+                </div>
+            </div>
+            <div class="wrapper">
+                <div class="section left mid">
+                    <div class='title-service green'>
+                        Información general
+                    </div>
+                    <div class='service-section'>
+                        <div class='pre-formatted-information'>
+                            <p>Pais: {{general_information.country_name}}<p>
+                            <p>Ciudad: {{general_information.city}}</p>
+                            <p>Organización: {{general_information.org}}</p>
+                            <p>ISP: {{general_information.isp}}</p>
+                            <p>Dirección IP: {{general_information.ip}}</p>
+                            <a href="/scans/{{pk}}/raw">Raw data</a>
+                        </div>
+                        <br>
+                        <div class='service-section-form'>
+                            <form class='create-form' action='/scans/{{pk}}' method="post">
+                                {% csrf_token %}
+                                {% readonly_form form request %}
+                                {{form.identifier.label}}
+                                <a class="info-icon-form" onclick="event.preventDefault();return informationBox(this,'{{infoMessage.identifier}}');" href="">&#x1F6C8;</a>
+                                {{form.identifier}}
+                                {{form.notes.label}}
+                                <a class="info-icon-form" onclick="event.preventDefault();return informationBox(this,'{{infoMessage.notes}}');" href="">&#x1F6C8;</a>
+                                <div class="form-notes">
+                                    {{form.notes}}
+                                </div>
+                                <div class="section-button right">
+                                    {% if booleanAdmin %}
+                                        <input class="form-button greenbg white" type="submit" value="Modificar">
+                                    {% endif %}
+                                </form>
+                                </div>      
+                        </div>
+                    </div>
+                </div>
+                <div class="section right mid">
+                    <div class='title-service green'>
+                        Listado de servicios
+                    </div>
+                    {% for s in services %}
+                        {% include "service.html"%}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,76 @@
+.login-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+}
+
+.left-login {
+    width: 55%;
+    height: 100%;
+    background: url("/static/img/fondo-left-div.png");
+    background-color: rgba(249, 123, 34, 1);
+    background-position:bottom right;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    position: relative;
+    
+}
+
+.right-login {
+    width: 45%;
+    height: 100%;
+    background-color: rgba(124, 144, 112, 1);
+    text-align: center;
+}
+
+.title-div {
+    width: 100%;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    text-align: center;
+  }
+
+.title{
+    font-size: 38px;
+    letter-spacing: 14px;
+    line-height: 1.4;
+    color: white;
+    
+}
+
+.subtitle_div{
+    margin: 15px 0px 0px 0px;
+    color: white;
+}
+
+.logo-login{
+    position: absolute;
+    width: 120px;
+    bottom: 0;
+    left: 0;
+    margin: 30px;
+}
+
+.login-div {
+    margin: 0;
+    position: relative;
+    display: inline-block;
+    top: 46%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    text-align: center;
+    width: 255px;
+  }
+
+.login-welcome{
+    margin: 0px 0px 16px 0px;
+}
+
+.https{
+    color: white;
+    text-align: right;
+}

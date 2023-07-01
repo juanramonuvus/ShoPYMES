@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="74" height="74" viewBox="0 0 74 74">
+  <g id="correct-not" transform="translate(-479 -430)">
+    <g id="Elipse_13" data-name="Elipse 13" transform="translate(479 430)" fill="none" stroke="#45cf4a" stroke-width="5">
+      <circle cx="37" cy="37" r="37" stroke="none"/>
+      <circle cx="37" cy="37" r="34.5" fill="none"/>
+    </g>
+    <path id="Trazado_16" data-name="Trazado 16" d="M78.839,52.606,55.315,80.639a.99.99,0,0,1-1.574,0l-6.3-7.475a1.515,1.515,0,0,0-2.449,0,2.276,2.276,0,0,0,0,2.907l6.3,7.475a4.14,4.14,0,0,0,6.471,0L81.288,55.617a2.276,2.276,0,0,0,0-2.907A1.576,1.576,0,0,0,78.839,52.606Z" transform="matrix(0.999, 0.035, -0.035, 0.999, 456.36, 397.25)" fill="#45cf4a" stroke="#45cf4a" stroke-width="0.5"/>
+  </g>
+</svg>

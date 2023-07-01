@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="wrapper">
+    <div class="section config-section">
+        <div class="section-title-div">
+            <p class="section-title blue">Configuración</p>
+            <div class="help-icon">
+                <a class="info-icon" onclick="event.preventDefault();return informationBox(this,'{{infoMessage.configuration_pass_change}}');" href="">&#x1F6C8;</a>
+            </div>
+        </div>
+        <div class="wrapper">
+            <div class="section config-menu">
+            {% include "config-menu.html" with active_tab='pass-change' %}
+            </div>
+            <div class="section config-content ">
+                <div class="config-inside">
+                    <div class="form-container">
+                        <form class="create-form" action="/configuration/pass-change" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="username" value={{username}} class="form-input create" required id="id_username">
+                            {{ form.old_password.label }}
+                            {{ form.old_password }}
+                            {{ form.new_password.label }}
+                            {{ form.new_password }}
+                            {{ form.new_password2.label }}
+                            {{ form.new_password2 }}
+                        </div>
+                            <div class="section-button">
+                            <input class="form-button greenbg white right" type="submit" value="Cambiar">
+                        </form>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
