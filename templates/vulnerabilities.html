@@ -42,15 +42,15 @@
             <div class="pagination-container">
                 <div class="pagination">
                     {% if hasPrevious %}
-                    <a href="/scans?page={{page|add:-1}}"><</a>
+                    <a href="/vulnerabilities?page={{page|add:-1}}"><</a>
                     {% else %}
-                    <a class="disabled" href="/scans?page={{page|add:-1}}"><</a>
+                    <a class="disabled" href="/vulnerabilities?page={{page|add:-1}}"><</a>
                     {% endif %}
                     <div class="pagination-number">{{ page }}</div>
                     {% if hasNext %}
-                    <a href="/scans?page={{page|add:1}}">></a>
+                    <a href="/vulnerabilities?page={{page|add:1}}">></a>
                     {% else %}
-                    <a class="disabled" href="/scans?page={{page|add:1}}">></a>
+                    <a class="disabled" href="/vulnerabilities?page={{page|add:1}}">></a>
                     {% endif %}
 
                 </div>
