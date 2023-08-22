@@ -18,7 +18,7 @@ from app.forms import LoginForm, ConfigChangePassForm, ShodanSubmit, Monitorizat
 
 infoMessages = getInfoMessages()
 
-SHODAN_API_KEY = 's1a8ZMKMWFnfvqNy20QsFMMfPI92mhh0'
+SHODAN_API_KEY = 'XXXXXXXXXXXXXX'
 api = shodan.Shodan(SHODAN_API_KEY)
 gs = goslate.Goslate()
 
@@ -91,19 +91,18 @@ def scans(request):
 def vulnerabilities(request):
     booleanAdmin = is_shopyme_admin(request)
     vulnerabilities_get = Vulnerability.objects.all().order_by('identifier')
-    print(vulnerabilities_get)
     #scans_get = Rule.objects.all().order_by('priority', 'pk').reverse()
     vulnerabilities = []
 
     for v in vulnerabilities_get:
         vuln = dict()
-    
+
         vuln['identifier'] = v.identifier
         vuln['description'] = v.description
         vulnerabilities.append(vuln)
 
     
-    paginator = Paginator(vulnerabilities, 10)
+    paginator = Paginator(vulnerabilities, 6)
     page = 1
     if 'page' in request.GET:
         page = int(request.GET.get('page'))
